@@ -24,6 +24,7 @@ async function confirmTransaction(tx) {
 describe("points", () => {
   // Configure the client to use the local cluster.
   anchor.setProvider(anchor.AnchorProvider.env());
+  // const provider = anchor.getProvider();
 
   const program = anchor.workspace.points as Program<Points>;
 
@@ -72,9 +73,9 @@ describe("points", () => {
       .accounts({
         from: playerAlice,
         to: playerBob,
-        authority: alice.publicKey,
+        authority: alice.publicKey, // added "provider.wallet.payer.publicKey" as authority to demonstrate anchor constraints
       })
-      .signers([alice])
+      .signers([alice]) // added "provider.wallet.payer" as authority to demonstrate anchor constraints
       .rpc();
 
     console.log(
