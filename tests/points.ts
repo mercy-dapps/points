@@ -74,7 +74,7 @@ describe("points", () => {
         from: playerAlice,
         to: playerBob,
         authority: alice.publicKey, // added "provider.wallet.payer.publicKey" as authority to demonstrate anchor constraints
-      })
+      } as any)
       .signers([alice]) // added "provider.wallet.payer" as authority to demonstrate anchor constraints
       .rpc();
 
@@ -85,9 +85,7 @@ describe("points", () => {
     );
 
     console.log(
-      `Bob has ${
-        (await program.account.player.fetch(playerBob)).points
-      } points`
+      `Bob has ${(await program.account.player.fetch(playerBob)).points} points`
     );
   });
 });
